@@ -1,68 +1,61 @@
 #loops-lab
 import java.util.Scanner;
 
-public class NumberOperations {
+public class LoopExamples {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-
-        int num1, num2;
-        int diff;
-
-        do {
-            // Prompt the user to enter two numbers
-            System.out.print("Enter the first number: ");
-            num1 = input.nextInt();
-
-            System.out.print("Enter the second number: ");
-            num2 = input.nextInt();
-
-            // Calculate the difference between the numbers
-            diff = Math.abs(num1 - num2);
-
-            if (diff < 200) {
-                System.out.println("The difference between the numbers is less than 200. Please try again.");
-            }
-        } while (diff < 200);
-
-        // Calculate and display the sums based on the criteria
-        calculateAndDisplaySums(num1, num2);
-
-        input.close();
-    }
-
-    /**
-     * Calculates and displays the sums of numbers based on specific criteria.
-     *
-     * @param num1 The first input number.
-     * @param num2 The second input number.
-     */
-    private static void calculateAndDisplaySums(int num1, int num2) {
-        int sumEvenDivisibleBy4 = 0;
-        int sumEvenDivisibleBy8 = 0;
-        int sumNotEvenNotDivisibleBy5 = 0;
-
-        // Use a for loop to iterate through numbers between num1 and num2
-        for (int i = num1; i <= num2; i++) {
-            switch (i % 2) {
-                case 0: // Even numbers
-                    if (i % 4 == 0) {
-                        sumEvenDivisibleBy4 += i;
-                    }
-                    if (i % 8 == 0) {
-                        sumEvenDivisibleBy8 += i;
-                    }
-                    break;
-                default: // Not even numbers
-                    if (i % 5 != 0) {
-                        sumNotEvenNotDivisibleBy5 += i;
-                    }
-                    break;
-            }
+        // Task 1: Display a string 99 times
+        String message = "This is the string to be displayed 99 times.";
+        for (int i = 0; i < 99; i++) {
+            System.out.println(message);
         }
-
-        // Display the sums
-        System.out.println("Sum of even numbers divisible by 4: " + sumEvenDivisibleBy4);
-        System.out.println("Sum of even numbers divisible by 8: " + sumEvenDivisibleBy8);
-        System.out.println("Sum of not even numbers not divisible by 5: " + sumNotEvenNotDivisibleBy5);
+        
+        // Task 2: Display every odd number from 0 to 99
+        for (int i = 1; i <= 99; i += 2) {
+            System.out.print(i + " ");
+        }
+        System.out.println(); // Newline
+        
+        // Task 3: Display every even number from 0 to 99
+        for (int i = 0; i <= 99; i += 2) {
+            System.out.print(i + " ");
+        }
+        System.out.println(); // Newline
+        
+        // Task 4: Display even numbers in a different way
+        for (int i = 2; i <= 99; i += 2) {
+            System.out.print(i + " ");
+        }
+        System.out.println(); // Newline
+        
+        // Task 5: Sum up and print odd numbers from 0 to 99
+        int oddSum = 0;
+        for (int i = 1; i <= 99; i += 2) {
+            oddSum += i;
+        }
+        System.out.println("Sum of odd numbers: " + oddSum);
+        
+        // Task 6: Sum up and print even numbers from 0 to 99
+        int evenSum = 0;
+        for (int i = 0; i <= 99; i += 2) {
+            evenSum += i;
+        }
+        System.out.println("Sum of even numbers: " + evenSum);
+        
+        
+        // Task 7: Sum of two numbers given by the user
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter the first number: ");
+        int num1 = scanner.nextInt();
+        
+        System.out.print("Enter the second number: ");
+        int num2 = scanner.nextInt();
+        
+        int sum = num1 + num2;
+        System.out.println("Sum of " + num1 + " and " + num2 + " is: " + sum);
+        
+        
+        // Close the scanner to release resources
+        scanner.close();
     }
 }
