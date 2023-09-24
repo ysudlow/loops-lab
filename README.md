@@ -1,142 +1,68 @@
 #loops-lab
-
-
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class UserInputScript {
+public class NumberOperations {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
-        try {
-            // Prompt and read user's name
-            System.out.print("Please enter your name: ");
-            String userName = scanner.nextLine();
-            System.out.println("Hello, " + userName + "! ");
+        int num1, num2;
+        int diff;
 
-            // Prompt and read pet preference
-            System.out.print("Do you prefer cats or dogs? ");
-            String petPreference = scanner.nextLine();
+        do {
+            // Prompt the user to enter two numbers
+            System.out.print("Enter the first number: ");
+            num1 = input.nextInt();
 
-            // Respond based on pet preference
-            if (petPreference.equalsIgnoreCase("dog") || petPreference.equalsIgnoreCase("dogs")) {
-                System.out.println("Woof!");
-            } else if (petPreference.equalsIgnoreCase("cat") || petPreference.equalsIgnoreCase("cats")) {
-                System.out.println("Meow!");
-            } else {
-                System.out.println("I'm not sure what sound that animal makes.");
+            System.out.print("Enter the second number: ");
+            num2 = input.nextInt();
+
+            // Calculate the difference between the numbers
+            diff = Math.abs(num1 - num2);
+
+            if (diff < 200) {
+                System.out.println("The difference between the numbers is less than 200. Please try again.");
             }
+        } while (diff < 200);
 
-            // Read the number of pets (integer input)
-            int petCount;
-            while (true) {
-                try {
-                    System.out.print("How many " + petPreference + " do you have? ");
-                    petCount = scanner.nextInt();
-                    break; // Exit the loop if a valid integer is entered
-                } catch (InputMismatchException e) {
-                    System.out.println("Invalid input. Please enter a valid integer.");
-                    scanner.next(); // Clear the invalid input
-                }
-            }
+        // Calculate and display the sums based on the criteria
+        calculateAndDisplaySums(num1, num2);
 
-            // Respond based on the number of pets
-            if (petCount == 1) {
-                System.out.println("You have " + petCount + " " + petPreference + ".");
-            } else if (petCount == 2) {
-                System.out.println("You have " + petCount + " " + petPreference + ".");
-            } else if (petCount > 2) {
-                System.out.println("You have " + petCount + " " + petPreference + ".");
-            } else {
-                System.out.println("I'm not sure how many " + petPreference + " you have.");
-            }
+        input.close();
+    }
 
-            // Read years of IT experience (floating-point input)
-            double itExperience;
-            while (true) {
-                try {
-                    System.out.println("How many years of IT experience do you have? ");
-                    itExperience = scanner.nextDouble();
-                    break; // Exit the loop if a valid double is entered
-                } catch (InputMismatchException e) {
-                    System.out.println("Invalid input. Please enter a valid number.");
-                    scanner.next(); // Clear the invalid input
-                }
-            }
+    /**
+     * Calculates and displays the sums of numbers based on specific criteria.
+     *
+     * @param num1 The first input number.
+     * @param num2 The second input number.
+     */
+    private static void calculateAndDisplaySums(int num1, int num2) {
+        int sumEvenDivisibleBy4 = 0;
+        int sumEvenDivisibleBy8 = 0;
+        int sumNotEvenNotDivisibleBy5 = 0;
 
-            // Respond based on IT experience
-            if (itExperience >= 0) {
-                System.out.println("You have " + itExperience + " years of IT experience.");
-            } else {
-                System.out.println("Invalid input. Years of IT experience cannot be negative.");
-            }
-
-            // Ask if the user likes ice cream (boolean input)
-            char iceCreamPreference;
-            while (true) {
-                try {
-                    System.out.println("Do you like ice cream? (yes/no): ");
-                    iceCreamPreference = scanner.next().charAt(0);
-                    if (iceCreamPreference == 'y' || iceCreamPreference == 'n') {
-                        break; // Exit the loop if 'y' or 'n' is entered
-                    } else {
-                        System.out.println("Invalid input. Please enter 'yes' or 'no'.");
+        // Use a for loop to iterate through numbers between num1 and num2
+        for (int i = num1; i <= num2; i++) {
+            switch (i % 2) {
+                case 0: // Even numbers
+                    if (i % 4 == 0) {
+                        sumEvenDivisibleBy4 += i;
                     }
-                } catch (InputMismatchException e) {
-                    System.out.println("Invalid input. Please enter 'yes' or 'no'.");
-                    scanner.next(); // Clear the invalid input
-                }
+                    if (i % 8 == 0) {
+                        sumEvenDivisibleBy8 += i;
+                    }
+                    break;
+                default: // Not even numbers
+                    if (i % 5 != 0) {
+                        sumNotEvenNotDivisibleBy5 += i;
+                    }
+                    break;
             }
-
-            // Respond based on ice cream preference
-            if (iceCreamPreference == 'y') {
-                System.out.println("Great! Ice cream is delicious.");
-            } else {
-                System.out.println("That's okay, not everyone likes ice cream.");
-            }
-
-            // Ask if the user has worked on a software development project (boolean input)
-            System.out.println("Have you ever worked on a software development project? (true/false): ");
-            boolean hasWorkedOnProject = scanner.nextBoolean();
-            System.out.println(hasWorkedOnProject ? "That's great! Experience is valuable." : "That's okay, everyone starts somewhere.");
-
-            // Perform arithmetic operations (addition, subtraction, multiplication, division)
-            System.out.print("Let's do some math! Enter two numbers separated by a space: ");
-            int num1 = scanner.nextInt();
-            int num2 = scanner.nextInt();
-
-            int sum = num1 + num2;
-            int difference = num1 - num2;
-            int product = num1 * num2;
-            double quotient = (double) num1 / num2;
-
-            System.out.println("Sum: " + sum);
-            System.out.println("Difference: " + difference);
-            System.out.println("Product: " + product);
-            System.out.println("Quotient: " + quotient);
-
-            // Increase a number by 10 (using assignment operator)
-            System.out.println("Enter a number to increase it by 10: ");
-            int newNumber = scanner.nextInt();
-            newNumber += 10;
-            System.out.println("After increasing by 10, the number is: " + newNumber);
-
-            // Compare a number with 50 (using relational operators)
-            System.out.println("Enter a number to compare with 50: ");
-            int comparisonNumber = scanner.nextInt();
-
-            if (comparisonNumber < 50) {
-                System.out.println(comparisonNumber + " is less than 50.");
-            } else if (comparisonNumber > 50) {
-                System.out.println(comparisonNumber + " is greater than 50.");
-            } else {
-                System.out.println(comparisonNumber + " is equal to 50.");
-            }
-
-        } catch (InputMismatchException e) {
-            System.out.println("Invalid input. Please enter a valid value.");
-        } finally {
-            scanner.close();
         }
+
+        // Display the sums
+        System.out.println("Sum of even numbers divisible by 4: " + sumEvenDivisibleBy4);
+        System.out.println("Sum of even numbers divisible by 8: " + sumEvenDivisibleBy8);
+        System.out.println("Sum of not even numbers not divisible by 5: " + sumNotEvenNotDivisibleBy5);
     }
 }
