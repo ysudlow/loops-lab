@@ -21,10 +21,8 @@ public class LoopExamples {
         System.out.println(); // Newline
         
         // Task 4: Display even numbers in a different way
-        for (int i = 0; i <= 99; i++) {
-            if (i % 2 == 0) {
-                System.out.print(i + " ");
-            }
+        for (int i = 2; i <= 99; i += 2) {
+            System.out.print(i + " ");
         }
         System.out.println(); // Newline
         
@@ -60,4 +58,3 @@ public class LoopExamples {
         scanner.close();
     }
 }
-    
