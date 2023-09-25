@@ -1,4 +1,5 @@
 #loops-lab
+
 import java.util.Scanner;
 
 public class LoopExamples {
@@ -42,20 +43,31 @@ public class LoopExamples {
         System.out.println("Sum of even numbers: " + evenSum);
         
         
-        // Task 7: Sum of two numbers given by the user
+        // Task 7: Sum of two numbers given by the user with a loop
         Scanner scanner = new Scanner(System.in);
+        boolean continueCalculating = true;
         
-        System.out.print("Enter the first number: ");
-        int num1 = scanner.nextInt();
-        
-        System.out.print("Enter the second number: ");
-        int num2 = scanner.nextInt();
-        
-        int sum = num1 + num2;
-        System.out.println("Sum of " + num1 + " and " + num2 + " is: " + sum);
-        
+        while (continueCalculating) {
+            System.out.print("Enter the first number: ");
+            int num1 = scanner.nextInt();
+            
+            System.out.print("Enter the second number: ");
+            int num2 = scanner.nextInt();
+            
+            int sum = num1 + num2;
+            System.out.println("Sum of " + num1 + " and " + num2 + " is: " + sum);
+            
+            System.out.print("Do you want to continue (yes/no)? ");
+            String userInput = scanner.next().toLowerCase();
+            
+            if (userInput.equals("no")) {
+                continueCalculating = false;
+            }
+        }
         
         // Close the scanner to release resources
         scanner.close();
     }
+}
+
 }
